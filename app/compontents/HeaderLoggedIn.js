@@ -1,12 +1,14 @@
-import React from "react";
-import {Link} from "react-router-dom"
+import React, { useEffect, useContext } from "react";
+import { Link } from "react-router-dom";
+import ExampleContext from "../ExampleContext";
 
 function HeaderLoggedIn(props) {
+  const { setLoggedIn } = useContext(ExampleContext);
   function handleLogout() {
-    props.setLoggedIn(false)
-    localStorage.removeItem("complexappToken")
-    localStorage.removeItem("complexappUsername")
-    localStorage.removeItem("complexappAvatar")
+    setLoggedIn(false);
+    localStorage.removeItem("complexappToken");
+    localStorage.removeItem("complexappUsername");
+    localStorage.removeItem("complexappAvatar");
   }
   return (
     <div className="flex-row my-3 my-md-0">
