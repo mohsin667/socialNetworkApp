@@ -1,22 +1,24 @@
-import React, { useState } from "react";
-import Page from "./Page";
-import Axios from "axios";
+import React, { useState } from "react"
+import Page from "./Page"
+import Axios from "axios"
 
 function HomeGuest() {
-  const [username, setUsername] = useState();
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [username, setUsername] = useState()
+  const [email, setEmail] = useState()
+  const [password, setPassword] = useState()
+
   async function handleSubmit(e) {
-    e.preventDefault();
+    e.preventDefault()
     try {
-      await Axios.post("/register", { username, email, password });
-      console.log("user was succesfully created.");
+      await Axios.post("/register", { username, email, password })
+      console.log("User was successfully created.")
     } catch (e) {
-      console.log("there was an error");
+      console.log("There was an error.")
     }
   }
+
   return (
-    <Page title="Welcome" wide={true}>
+    <Page title="Welcome!" wide={true}>
       <div className="row align-items-center">
         <div className="col-lg-7 py-3 py-md-5">
           <h1 className="display-3">Remember Writing?</h1>
@@ -49,7 +51,7 @@ function HomeGuest() {
         </div>
       </div>
     </Page>
-  );
+  )
 }
 
-export default HomeGuest;
+export default HomeGuest

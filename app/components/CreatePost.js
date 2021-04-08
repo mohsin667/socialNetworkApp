@@ -1,28 +1,29 @@
-import React, { useEffect, useState, useContext } from "react";
-import Page from "./Page";
-import Axios from "axios";
-import { withRouter } from "react-router-dom";
-import ExampleContext from "../ExampleContext";
+import React, { useEffect, useState, useContext } from "react"
+import Page from "./Page"
+import Axios from "axios"
+import { withRouter } from "react-router-dom"
+import DispatchContext from "../DispatchContext"
+import StateContext from "../StateContext"
 
 function CreatePost(props) {
-  const [title, setTitle] = useState();
-  const [body, setBody] = useState();
-  const { addFlashMessages } = useContext(ExampleContext);
+  const [title, setTitle] = useState()
+  const [body, setBody] = useState()
+  const appDispatch = useContext(DispatchContext)
+  const appState = useContext(StateContext)
 
   async function handleSubmit(e) {
-    e.preventDefault();
+    e.preventDefault()
     try {
-      const response = await Axios.post("/create-post", {
-        title,
-        body,
-        token: localStorage.getItem("complexappToken")
-      });
-      // Re direct to new post url
-      addFlashMessages("Congrates, you have successfully created a new post!");
-      props.history.push(`/post/${response.data}`);
-      console.log("A new post was created");
-    } catch {}
+      const response = await Axios.post("/create-post", { title, body, token: appState.user.token })
+      // Redirect to new post url
+      appDispatch({ type: "flashMessage", value: "Congrats, you created a new post." })
+      props.history.push(`/post/${response.data}`)
+      console.log("New post was created.")
+    } catch (e) {
+      console.log("There was a problem.")
+    }
   }
+
   return (
     <Page title="Create New Post">
       <form onSubmit={handleSubmit}>
@@ -43,7 +44,7 @@ function CreatePost(props) {
         <button className="btn btn-primary">Save New Post</button>
       </form>
     </Page>
-  );
+  )
 }
 
-export default withRouter(CreatePost);
+export default withRouter(CreatePost)
