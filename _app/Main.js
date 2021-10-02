@@ -20,7 +20,6 @@ import ViewSinglePost from "./components/ViewSinglePost"
 import FlashMessages from "./components/FlashMessages"
 import Profile from "./components/Profile"
 import EditPost from "./components/EditPost"
-import NotFound from "./components/NotFound"
 
 function Main() {
   const initialState = {
@@ -89,9 +88,6 @@ function Main() {
             </Route>
             <Route path="/terms">
               <Terms />
-            </Route>
-            <Route >
-              <NotFound />
             </Route>
           </Switch>
           <Footer />
