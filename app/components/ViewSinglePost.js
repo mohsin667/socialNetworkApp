@@ -31,7 +31,7 @@ function ViewSinglePost(props) {
     return () => {
       ourRequest.cancel()
     }
-  }, [])
+  }, [id])
 
   if(!isLoading && !post) {
     return (
@@ -99,7 +99,7 @@ function ViewSinglePost(props) {
         <Link to={`/profile/${post.author.username}`}>
           <img className="avatar-tiny" src={post.author.avatar} />
         </Link>
-        Posted by <Link to={`/profile/${post.author.username}`}>{post.author.username}</Link> on {dateFormatted}
+        Posted by <Link to={`/profile/${post.author.username}`}>{post.author.username[0].toUpperCase()+post.author.username.slice(1,post.author.username.length)}</Link> on {dateFormatted}
       </p>
 
       <div className="body-content">
